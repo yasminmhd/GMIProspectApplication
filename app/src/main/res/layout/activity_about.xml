@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_banner"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/banner_bg"
+        android:gravity="center"
+        android:text="GMI Prospect Application"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_below="@id/tv_banner"
+        android:layout_above="@id/bottom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <!-- Bottom toolbar -->
+    <LinearLayout
+        android:id="@+id/bottom_toolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btn_eligibility_toolbar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_edit"
+            android:background="@android:color/transparent"
+            android:contentDescription="Eligibility"
+            app:tint="@color/white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btn_contact_toolbar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_call"
+            android:background="@android:color/transparent"
+            android:contentDescription="Contact"
+            app:tint="@color/white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btn_about_toolbar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_info_details"
+            android:background="@android:color/transparent"
+            android:contentDescription="About"
+            app:tint="@color/white" />
+    </LinearLayout>
+</RelativeLayout>
