@@ -5,4 +5,5 @@
     <color name="colorPrimary">#D32F2F</color> <!-- red -->
     <color name="colorPrimaryDark">#B71C1C</color>
     <color name="colorAccent">#1976D2</color> <!-- blue -->
+    <color name="topBarRed">#D32F2F</color>
 </resources>

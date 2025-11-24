@@ -34,12 +34,15 @@ public class EnquiryActivity extends AppCompatActivity {
 
         // toolbar icons
         ImageButton btnContact = findViewById(R.id.btn_contact_toolbar);
-        ImageButton btnAbout = findViewById(R.id.btn_about_toolbar);
         ImageButton btnEligibility = findViewById(R.id.btn_eligibility_toolbar);
+        ImageButton btnHome = findViewById(R.id.btn_home_toolbar);
 
         btnContact.setOnClickListener(v -> {
         });
-        btnAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
         btnEligibility.setOnClickListener(v -> startActivity(new Intent(this, EligibilityActivity.class)));
+        btnHome.setOnClickListener(v -> {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
     }
 }

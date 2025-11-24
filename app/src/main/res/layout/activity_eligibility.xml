@@ -9,12 +9,13 @@
     <TextView
         android:id="@+id/tv_banner"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="140dp"
         android:background="@drawable/banner_bg"
-        android:gravity="center"
+        android:gravity="bottom|center_horizontal"
+        android:paddingBottom="35dp"
         android:text="GMI Prospect Application"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -28,26 +29,32 @@
         <TextView
             android:text="Enter your numeric score (0-100)"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/et_score"
             android:inputType="number"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:hint="Score (0-100)" />
 
         <Button
             android:id="@+id/btn_check"
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Check Eligibility" />
+            android:text="Check Eligibility"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/tv_result"
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black" />
 
         <Button
             android:id="@+id/btn_apply"
@@ -55,10 +62,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Apply Online"
-            android:enabled="false" />
+            android:enabled="false"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
-    <!-- Bottom toolbar -->
+    <!-- Bottom toolbar (added Home button) -->
     <LinearLayout
         android:id="@+id/bottom_toolbar"
         android:layout_alignParentBottom="true"
@@ -69,6 +77,21 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btn_home_toolbar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_view"
+            android:background="@android:color/transparent"
+            android:contentDescription="Home"
+            app:tint="@color/white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
 
         <ImageButton
             android:id="@+id/btn_eligibility_toolbar"
@@ -93,21 +116,6 @@
             android:src="@android:drawable/ic_menu_call"
             android:background="@android:color/transparent"
             android:contentDescription="Contact"
-            app:tint="@color/white" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/white" />
-
-        <ImageButton
-            android:id="@+id/btn_about_toolbar"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_info_details"
-            android:background="@android:color/transparent"
-            android:contentDescription="About"
             app:tint="@color/white" />
     </LinearLayout>
 </RelativeLayout>

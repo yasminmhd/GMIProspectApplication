@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="@drawable/banner_bg"
-        android:gravity="center"
+        android:gravity="bottom|center_horizontal"
+        android:paddingBottom="35dp"
         android:text="GMI Prospect Application"
         android:textColor="@color/white"
         android:textSize="22sp"
@@ -31,6 +32,80 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- PreU card -->
+            <LinearLayout
+                android:id="@+id/card_preu"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/card_bg"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/preu_pic"
+                    android:contentDescription="PreU image"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:text="Pre-University Programmes"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_card_preu_desc"
+                    android:text="German University Preparatory Programme (GAPP)\nGMI-UTP Foundation Programme (GUFP)"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Degree card -->
+            <LinearLayout
+                android:id="@+id/card_degree"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/card_bg"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/degree_pic"
+                    android:contentDescription="Degree image"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:text="Degree"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_card_degree_desc"
+                    android:text="Bachelor Electrical Engineering Technology (BELT)"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
             <!-- Diploma card -->
             <LinearLayout
                 android:id="@+id/card_diploma"
@@ -43,6 +118,14 @@
                 android:clickable="true"
                 android:focusable="true">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/diploma_pic"
+                    android:contentDescription="Diploma image"
+                    android:layout_marginBottom="8dp"/>
+
                 <TextView
                     android:text="Diploma"
                     android:textSize="18sp"
@@ -53,66 +136,11 @@
 
                 <TextView
                     android:id="@+id/tv_card_diploma_desc"
-                    android:text="Diploma in Business\nDiploma in Computer Science\nDiploma in Engineering"
+                    android:text="Electrical Engineering\nMechanical Engineering\nComputer and Information"
                     android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <!-- GUFP card -->
-            <LinearLayout
-                android:id="@+id/card_gufp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/card_bg"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
-                    android:text="GUFP"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tv_card_gufp_desc"
-                    android:text="GUFP - Pre-University Arts\nGUFP - Pre-University Science"
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <!-- GAPP card -->
-            <LinearLayout
-                android:id="@+id/card_gapp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/card_bg"
-                android:clickable="true"
-                android:focusable="true">
-
-                <TextView
-                    android:text="GAPP"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tv_card_gapp_desc"
-                    android:text="GAPP - Foundation in Business\nGAPP - Foundation in Computing"
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black" />
             </LinearLayout>
 
         </LinearLayout>
@@ -129,6 +157,21 @@
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btn_home_toolbar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_view"
+            android:background="@android:color/transparent"
+            android:contentDescription="Home"
+            app:tint="@color/white" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
 
         <ImageButton
             android:id="@+id/btn_eligibility_toolbar"
@@ -153,21 +196,6 @@
             android:src="@android:drawable/ic_menu_call"
             android:background="@android:color/transparent"
             android:contentDescription="Contact"
-            app:tint="@color/white" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/white" />
-
-        <ImageButton
-            android:id="@+id/btn_about_toolbar"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_info_details"
-            android:background="@android:color/transparent"
-            android:contentDescription="About"
             app:tint="@color/white" />
     </LinearLayout>
 

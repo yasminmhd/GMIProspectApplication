@@ -63,12 +63,14 @@ public class EligibilityActivity extends AppCompatActivity {
 
         // toolbar icons
         ImageButton btnContact = findViewById(R.id.btn_contact_toolbar);
-        ImageButton btnAbout = findViewById(R.id.btn_about_toolbar);
         ImageButton btnEligibility = findViewById(R.id.btn_eligibility_toolbar);
+        ImageButton btnHome = findViewById(R.id.btn_home_toolbar);
 
         btnContact.setOnClickListener(v -> startActivity(new Intent(this, EnquiryActivity.class)));
-        btnAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
-        // already on eligibility; no-op
+        btnHome.setOnClickListener(v -> {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        });
     }
 
     private void openApplyUrl() {

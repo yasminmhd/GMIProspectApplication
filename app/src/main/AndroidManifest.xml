@@ -16,14 +16,13 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".CourseListActivity" />
         <activity android:name=".EligibilityActivity" />
         <activity android:name=".EnquiryActivity" />
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".CourseDetailActivity" />
     </application>
 
 </manifest>
