@@ -81,7 +81,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- Sejarah -->
@@ -106,7 +108,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- English -->
@@ -131,7 +135,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- Mathematics -->
@@ -156,7 +162,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- Additional Math -->
@@ -181,7 +189,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- Physics -->
@@ -206,7 +216,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- Chemistry -->
@@ -231,7 +243,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- Extras header -->
@@ -285,7 +299,8 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.4"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -306,7 +321,8 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.4"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -327,7 +343,8 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.4"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -366,7 +383,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -388,7 +407,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -410,7 +431,9 @@
                         style="@style/AppSpinner"
                         android:layout_width="0dp"
                         android:layout_weight="0.55"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp" />
                 </LinearLayout>
 
                 <!-- IGCSE extras -->
@@ -444,18 +467,59 @@
                 </LinearLayout>
 
                 <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
-                    <Spinner android:id="@+id/sp_igcse_extra_sub_1" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.6" android:layout_height="wrap_content"/>
-                    <Spinner android:id="@+id/sp_igcse_extra_grade_1" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.4" android:layout_height="wrap_content"/>
+                    <Spinner
+                        android:id="@+id/sp_igcse_extra_sub_1"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"/>
+                    <Spinner
+                        android:id="@+id/sp_igcse_extra_grade_1"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"/>
                 </LinearLayout>
 
-                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
-                    <Spinner android:id="@+id/sp_igcse_extra_sub_2" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.6" android:layout_height="wrap_content"/>
-                    <Spinner android:id="@+id/sp_igcse_extra_grade_2" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.4" android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+                    <Spinner
+                        android:id="@+id/sp_igcse_extra_sub_2"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"/>
+                    <Spinner
+                        android:id="@+id/sp_igcse_extra_grade_2"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"/>
                 </LinearLayout>
 
-                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
-                    <Spinner android:id="@+id/sp_igcse_extra_sub_3" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.6" android:layout_height="wrap_content"/>
-                    <Spinner android:id="@+id/sp_igcse_extra_grade_3" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.4" android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+                    <Spinner
+                        android:id="@+id/sp_igcse_extra_sub_3"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"/>
+                    <Spinner
+                        android:id="@+id/sp_igcse_extra_grade_3"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"/>
                 </LinearLayout>
             </LinearLayout>
 

@@ -19,10 +19,10 @@ import androidx.appcompat.app.AppCompatActivity;
 public class EligibilityActivity extends AppCompatActivity {
     private static final String APPLY_URL = "https://gmi.vialing.com/oa/login";
 
-    // grade list A..G
-    private static final String[] GRADES = new String[] { "Select", "A", "B", "C", "D", "E", "F", "G" };
+    private static final String[] GRADES = new String[] {
+            "Select", "A+", "A", "A-", "B+", "B", "C+", "C", "D", "E", "G"
+    };
 
-    // extra subject pool for selection
     private static final String[] EXTRA_SUBJECTS = new String[] {
             "Select subject", "Biology", "Additional Science", "Computer Studies", "Economics",
             "Further Mathematics", "Geography", "Arabic", "Chinese", "Tamil", "Accountancy", "Design & Technology"
@@ -78,7 +78,7 @@ public class EligibilityActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(R.layout.spinner_item);
         spCert.setAdapter(adapter);
 
-        // find SPM spinners
+        // SPM spinners
         Spinner spSpmBm = findViewById(R.id.sp_spm_bm);
         Spinner spSpmSej = findViewById(R.id.sp_spm_sejarah);
         Spinner spSpmEng = findViewById(R.id.sp_spm_eng);
@@ -256,12 +256,17 @@ public class EligibilityActivity extends AppCompatActivity {
     private static int gradeToPoints(String g) {
         if (g == null) return 0;
         switch (g) {
+            case "A+": return 5;
             case "A": return 5;
-            case "B": return 4;
-            case "C": return 3;
-            case "D": return 2;
-            case "E": return 1;
-            default: return 0; // F, G or Select
+            case "A-": return 4;
+            case "B+": return 4;
+            case "B": return 3;
+            case "C+": return 3;
+            case "C": return 2;
+            case "D": return 1;
+            case "E": return 0;
+            case "G": return 0;
+            default: return 0; // Select or unknown
         }
     }
 }
