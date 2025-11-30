@@ -2,7 +2,7 @@ package com.spg0562.gmiprospectapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageButton;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout carddegree = findViewById(R.id.card_degree);
         LinearLayout carddiploma= findViewById(R.id.card_diploma);
 
-        ImageButton btnContact = findViewById(R.id.btn_contact_toolbar);
-        ImageButton btnEligibility = findViewById(R.id.btn_eligibility_toolbar);
-        ImageButton btnHome = findViewById(R.id.btn_home_toolbar);
+        View btnContact = findViewById(R.id.btn_contact_toolbar);
+        View btnEligibility = findViewById(R.id.btn_eligibility_toolbar);
+        View btnHome = findViewById(R.id.btn_home_toolbar);
+        View btnAbout = findViewById(R.id.btn_about_toolbar);
         ScrollView scroll = findViewById(R.id.scroll_courses);
 
         cardpreu.setOnClickListener(v -> openCourseList("Pre-U"));
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         btnHome.setOnClickListener(v -> {
             if (scroll != null) scroll.smoothScrollTo(0, 0);
         });
+        btnAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
     }
 
     private void openCourseList(String category) {

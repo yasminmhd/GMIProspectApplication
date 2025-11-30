@@ -13,60 +13,504 @@
         android:background="@drawable/banner_bg"
         android:gravity="bottom|center_horizontal"
         android:paddingBottom="35dp"
-        android:text="GMI Prospect Application"
+        android:text="Eligibility Checker"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold" />
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
+        android:id="@+id/scroll_content"
         android:layout_below="@id/tv_banner"
         android:layout_above="@id/bottom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <TextView
-            android:text="Enter your numeric score (0-100)"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
-
-        <EditText
-            android:id="@+id/et_score"
-            android:inputType="number"
+        <!-- Card container -->
+        <LinearLayout
+            android:id="@+id/ln_form_card"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/darker_gray"
-            android:hint="Score (0-100)" />
+            android:background="@drawable/card_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="4dp">
 
-        <Button
-            android:id="@+id/btn_check"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Check Eligibility"
-            android:textColor="@android:color/black" />
+                <!-- Certificate selector -->
+                <Spinner
+                    android:id="@+id/sp_cert_type"
+                    style="@style/AppSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/tv_result"
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+                <View android:layout_height="12dp" android:layout_width="match_parent"/>
 
-        <Button
-            android:id="@+id/btn_apply"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Apply Online"
-            android:enabled="false"
-            android:textColor="@android:color/black" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_spm"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <!-- Bottom toolbar (added Home button) -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SPM - compulsory subjects"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <!-- Bahasa Malaysia -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Bahasa Malaysia"
+                        android:textColor="#000000"
+                        android:gravity="start|center_vertical"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_bm"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Sejarah -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Sejarah"
+                        android:textColor="#000000"
+                        android:gravity="start|center_vertical"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_sejarah"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- English -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textColor="#000000"
+                        android:gravity="start|center_vertical"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_eng"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Mathematics -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Mathematics"
+                        android:textColor="#000000"
+                        android:gravity="start|center_vertical"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_math"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Additional Math -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Additional Math"
+                        android:textColor="#000000"
+                        android:gravity="start|center_vertical"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_addmath"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Physics -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Physics"
+                        android:textColor="#000000"
+                        android:gravity="start|center_vertical"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_phy"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Chemistry -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Chemistry"
+                        android:textColor="#000000"
+                        android:gravity="start|center_vertical"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_chem"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Extras header -->
+                <TextView
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Extra subjects (optional)"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <!-- Extras header row -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:text="Subject"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:text="Grade"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <Spinner
+                        android:id="@+id/sp_spm_extra_sub_1"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_extra_grade_1"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <Spinner
+                        android:id="@+id/sp_spm_extra_sub_2"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_extra_grade_2"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <Spinner
+                        android:id="@+id/sp_spm_extra_sub_3"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"/>
+
+                    <Spinner
+                        android:id="@+id/sp_spm_extra_grade_3"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- IGCSE section -->
+            <LinearLayout
+                android:id="@+id/ll_igcse"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:text="IGCSE - key subjects"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textColor="#000000"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_igcse_eng"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Mathematics"
+                        android:textColor="#000000"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_igcse_math"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.45"
+                        android:layout_height="wrap_content"
+                        android:text="Science"
+                        android:textColor="#000000"
+                        android:paddingEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/sp_igcse_science"
+                        style="@style/AppSpinner"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.55"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- IGCSE extras -->
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:text="Extra subjects (optional)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.6"
+                        android:layout_height="wrap_content"
+                        android:text="Subject"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.4"
+                        android:layout_height="wrap_content"
+                        android:text="Grade"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
+                    <Spinner android:id="@+id/sp_igcse_extra_sub_1" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.6" android:layout_height="wrap_content"/>
+                    <Spinner android:id="@+id/sp_igcse_extra_grade_1" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.4" android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
+                    <Spinner android:id="@+id/sp_igcse_extra_sub_2" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.6" android:layout_height="wrap_content"/>
+                    <Spinner android:id="@+id/sp_igcse_extra_grade_2" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.4" android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp">
+                    <Spinner android:id="@+id/sp_igcse_extra_sub_3" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.6" android:layout_height="wrap_content"/>
+                    <Spinner android:id="@+id/sp_igcse_extra_grade_3" style="@style/AppSpinner" android:layout_width="0dp" android:layout_weight="0.4" android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- VKM section -->
+            <LinearLayout
+                android:id="@+id/ll_vkm"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="VKM percentage"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+
+                <EditText
+                    android:id="@+id/et_vkm_percent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Enter VKM %"
+                    android:background="?android:attr/editTextBackground"
+                    android:layout_marginTop="6dp"/>
+            </LinearLayout>
+
+            <!-- result and buttons -->
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"/>
+
+            <Button
+                android:id="@+id/btn_check"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Check Eligibility" />
+
+            <Button
+                android:id="@+id/btn_apply"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apply Online"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom toolbar -->
     <LinearLayout
         android:id="@+id/bottom_toolbar"
         android:layout_alignParentBottom="true"
@@ -78,44 +522,111 @@
         android:paddingEnd="8dp"
         android:gravity="center_vertical">
 
-        <ImageButton
+        <LinearLayout
             android:id="@+id/btn_home_toolbar"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_view"
-            android:background="@android:color/transparent"
-            android:contentDescription="Home"
-            app:tint="@color/white" />
-
-        <View
-            android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/white" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageButton
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_view"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="Home"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/white" />
+
+        <LinearLayout
             android:id="@+id/btn_eligibility_toolbar"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_edit"
-            android:background="@android:color/transparent"
-            android:contentDescription="Eligibility"
-            app:tint="@color/white" />
-
-        <View
-            android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/white" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageButton
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_edit"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="Eligibility"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/white" />
+
+        <LinearLayout
             android:id="@+id/btn_contact_toolbar"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_call"
-            android:background="@android:color/transparent"
-            android:contentDescription="Contact"
-            app:tint="@color/white" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_call"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="Contact"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/btn_about_toolbar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_info_details"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="About"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

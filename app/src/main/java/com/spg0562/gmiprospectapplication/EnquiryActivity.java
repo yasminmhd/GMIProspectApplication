@@ -3,9 +3,9 @@ package com.spg0562.gmiprospectapplication;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,17 +32,18 @@ public class EnquiryActivity extends AppCompatActivity {
             startActivity(Intent.createChooser(intent, "Send enquiry"));
         });
 
-        // toolbar icons
-        ImageButton btnContact = findViewById(R.id.btn_contact_toolbar);
-        ImageButton btnEligibility = findViewById(R.id.btn_eligibility_toolbar);
-        ImageButton btnHome = findViewById(R.id.btn_home_toolbar);
+        // toolbar icons (now container views)
+        View btnContact = findViewById(R.id.btn_contact_toolbar);
+        View btnEligibility = findViewById(R.id.btn_eligibility_toolbar);
+        View btnHome = findViewById(R.id.btn_home_toolbar);
+        View btnAbout = findViewById(R.id.btn_about_toolbar);
 
-        btnContact.setOnClickListener(v -> {
-        });
+        btnContact.setOnClickListener(v -> { /* already here */ });
         btnEligibility.setOnClickListener(v -> startActivity(new Intent(this, EligibilityActivity.class)));
         btnHome.setOnClickListener(v -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         });
+        btnAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
     }
 }

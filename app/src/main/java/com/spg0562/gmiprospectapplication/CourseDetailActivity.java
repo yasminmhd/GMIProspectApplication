@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -19,7 +20,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.HashMap;
 import java.util.Map;
 
-/* CourseDetailActivity: loads CourseInfo and wires up TabLayout + ViewPager2. */
+/* CourseDetailActivity: loads CourseInfo and wires up TabLayout + ViewPager2.
+   Shows programme title on top bar and an optional banner image. */
 public class CourseDetailActivity extends AppCompatActivity {
     private static final Map<String, CourseInfo> COURSE_MAP = new HashMap<>();
 
@@ -142,6 +144,8 @@ public class CourseDetailActivity extends AppCompatActivity {
         if (programme == null) programme = "Course";
 
         ImageButton btnBack = findViewById(R.id.btn_back_detail);
+        TextView tvTitle = findViewById(R.id.tv_detail_title);
+        ImageView ivBanner = findViewById(R.id.iv_course_banner);
         TabLayout tabs = findViewById(R.id.tab_layout);
         ViewPager2 vp = findViewById(R.id.view_pager);
 
@@ -154,7 +158,19 @@ public class CourseDetailActivity extends AppCompatActivity {
             info = new CourseInfo(title, rest, "", "");
         }
 
-        // Use the new View-based pager adapter (no fragments, no fragment xml)
+        // set toolbar title to selected programme
+        tvTitle.setText(info.title);
+
+        // determine banner for the programme (simple keyword matching)
+        int bannerRes = getBannerResForProgramme(programme);
+        if (bannerRes != 0) {
+            ivBanner.setImageResource(bannerRes);
+            ivBanner.setVisibility(View.VISIBLE);
+        } else {
+            ivBanner.setVisibility(View.GONE);
+        }
+
+        // Use the existing view-based pager adapter
         CoursePagerAdapter adapter = new CoursePagerAdapter(this, info.overview, info.subjects, info.pathway);
         vp.setAdapter(adapter);
 
@@ -167,6 +183,40 @@ public class CourseDetailActivity extends AppCompatActivity {
         }).attach();
     }
 
+    private int getBannerResForProgramme(String programme) {
+        if (programme == null) return 0;
+        String lower = programme.toLowerCase();
+        if (lower.contains("electrical") || lower.contains("mechatronic") || lower.contains("electrics")) {
+            return getResources().getIdentifier("banner_electrical", "drawable", getPackageName());
+        }
+        if (lower.contains("mechanical") || lower.contains("mechanics")) {
+            return getResources().getIdentifier("banner_mechanical", "drawable", getPackageName());
+        }
+        if (lower.contains("software")) {
+            return getResources().getIdentifier("swe_banner", "drawable", getPackageName());
+        }
+        if (lower.contains("cyber")) {
+            return getResources().getIdentifier("nws_banner", "drawable", getPackageName());
+        }
+        if (lower.contains("creative") || lower.contains("multimedia")) {
+            return getResources().getIdentifier("crm_banner", "drawable", getPackageName());
+        }
+        if (lower.contains("gapp")) {
+            return getResources().getIdentifier("gapp_banner", "drawable", getPackageName());
+        }
+        if (lower.contains("gufp")) {
+            return getResources().getIdentifier("gufp_pic", "drawable", getPackageName());
+        }
+        if (lower.contains("bachelor") || lower.contains("belt") || lower.contains("degree")) {
+            return getResources().getIdentifier("banner_degree", "drawable", getPackageName());
+        }
+        if (lower.contains("diploma")) {
+            return getResources().getIdentifier("diploma_pic", "drawable", getPackageName());
+        }
+        return 0;
+    }
+
+    // CourseInfo and CoursePagerAdapter classes unchanged (keep existing implementations)
     private static class CourseInfo {
         final String title;
         final String overview;
@@ -180,7 +230,6 @@ public class CourseDetailActivity extends AppCompatActivity {
         }
     }
 
-    // Adapter that creates page Views programmatically
     private static class CoursePagerAdapter extends RecyclerView.Adapter<CoursePagerAdapter.PageViewHolder> {
         private final Context ctx;
         private final String[] texts;
@@ -192,13 +241,11 @@ public class CourseDetailActivity extends AppCompatActivity {
 
         @Override
         public PageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            // Create ScrollView container
             ScrollView sv = new ScrollView(ctx);
             sv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             int pad = dpToPx(ctx, 12);
             sv.setPadding(pad, pad, pad, pad);
 
-            // Create the TextView that will hold the page text
             TextView tv = new TextView(ctx);
             ScrollView.LayoutParams lp = new ScrollView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             tv.setLayoutParams(lp);

@@ -13,7 +13,7 @@
         android:background="@drawable/banner_bg"
         android:gravity="bottom|center_horizontal"
         android:paddingBottom="35dp"
-        android:text="GMI Prospect Application"
+        android:text="Contact Us"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold" />
@@ -25,49 +25,61 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-            <EditText
-                android:id="@+id/et_name"
-                android:hint="Your name"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/darker_gray" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/et_email"
-                android:hint="Your email"
-                android:inputType="textEmailAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/darker_gray" />
+                <LinearLayout
+                    android:id="@+id/ln_enquiry_card"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/card_bg"
+                    android:padding="16dp"
+                    android:layout_marginBottom="12dp">
 
-            <EditText
-                android:id="@+id/et_message"
-                android:hint="Message"
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:textColor="@android:color/black"
-                android:textColorHint="@android:color/darker_gray" />
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Name" />
 
-            <Button
-                android:id="@+id/btn_send"
-                android:layout_marginTop="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Send Enquiry"
-                android:textColor="@android:color/black" />
-        </LinearLayout>
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:layout_marginTop="8dp"/>
+
+                    <EditText
+                        android:id="@+id/et_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Message"
+                        android:inputType="textMultiLine"
+                        android:minLines="4"
+                        android:layout_marginTop="8dp"/>
+
+                    <Button
+                        android:id="@+id/btn_send"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Send"
+                        android:layout_marginTop="12dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
     </ScrollView>
 
-    <!-- Bottom toolbar (added Home button) -->
+    <!-- Bottom toolbar -->
     <LinearLayout
         android:id="@+id/bottom_toolbar"
         android:layout_alignParentBottom="true"
@@ -79,44 +91,110 @@
         android:paddingEnd="8dp"
         android:gravity="center_vertical">
 
-        <ImageButton
+        <LinearLayout
             android:id="@+id/btn_home_toolbar"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_view"
-            android:background="@android:color/transparent"
-            android:contentDescription="Home"
-            app:tint="@color/white" />
-
-        <View
-            android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/white" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageButton
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_view"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="Home"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/white" />
+
+        <LinearLayout
             android:id="@+id/btn_eligibility_toolbar"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_edit"
-            android:background="@android:color/transparent"
-            android:contentDescription="Eligibility"
-            app:tint="@color/white" />
-
-        <View
-            android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/white" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
 
-        <ImageButton
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_edit"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="Eligibility"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/white" />
+
+        <LinearLayout
             android:id="@+id/btn_contact_toolbar"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_call"
-            android:background="@android:color/transparent"
-            android:contentDescription="Contact"
-            app:tint="@color/white" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_call"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="Contact"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View android:layout_width="1dp" android:layout_height="match_parent" android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/btn_about_toolbar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_info_details"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:text="About"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

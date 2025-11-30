@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <!-- Branch banner (hidden by default) -->
+    <!-- Branch banner -->
     <ImageView
         android:id="@+id/iv_branch_banner"
         android:layout_width="match_parent"

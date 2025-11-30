@@ -87,6 +87,22 @@ public class CourseListActivity extends AppCompatActivity {
         tvCategory.setText(category);
         btnBack.setOnClickListener(v -> finish());
 
+        // show a banner for the selected category if available
+        int catBanner = 0;
+        if ("Pre-U".equalsIgnoreCase(category)) {
+            catBanner = getResources().getIdentifier("preu_pic", "drawable", getPackageName());
+        } else if ("Degree".equalsIgnoreCase(category)) {
+            catBanner = getResources().getIdentifier("degree_pic", "drawable", getPackageName());
+        } else if ("Diploma".equalsIgnoreCase(category)) {
+            catBanner = getResources().getIdentifier("diploma_pic", "drawable", getPackageName());
+        }
+        if (catBanner != 0) {
+            ivBanner.setImageResource(catBanner);
+            ivBanner.setVisibility(View.VISIBLE);
+        } else {
+            ivBanner.setVisibility(View.GONE);
+        }
+
         // find the group that matches category (or show all groups if no match)
         List<Map<String, String>> useGroup = new ArrayList<>();
         List<List<Map<String, String>>> useChild = new ArrayList<>();
@@ -106,14 +122,7 @@ public class CourseListActivity extends AppCompatActivity {
 
         LayoutInflater inflater = LayoutInflater.from(this);
         for (int g = 0; g < useGroup.size(); g++) {
-            String groupTitle = useGroup.get(g).get("TITLE");
-            TextView header = new TextView(this);
-            header.setText(groupTitle);
-            header.setTextSize(16f);
-            header.setPadding(8, 12, 0, 6);
-            header.setTextColor(getResources().getColor(android.R.color.black));
-            llContainer.addView(header);
-
+            // NOTE: small group headers removed per request — only show cards
             List<Map<String, String>> children = useChild.get(g);
             for (int c = 0; c < children.size(); c++) {
                 Map<String, String> item = children.get(c);
@@ -128,12 +137,10 @@ public class CourseListActivity extends AppCompatActivity {
                 card.setOnClickListener(v -> {
                     String[] progs = branchPrograms.get(branchKey);
                     if (progs != null && progs.length > 0) {
-                        // navigate to a new CourseListActivity showing the programmes for this branch
                         Intent i = new Intent(this, CourseListActivity.class);
                         i.putExtra("branch", branchKey);
                         startActivity(i);
                     } else {
-                        // open detail directly
                         openCourseDetail(branchKey);
                     }
                 });
@@ -175,9 +182,9 @@ public class CourseListActivity extends AppCompatActivity {
         gdiploma.put("TITLE", "Diploma");
         groupData.add(gdiploma);
         List<Map<String, String>> diplomaChildren = new ArrayList<>();
-        diplomaChildren.add(childItem("Electrical Engineering", "• Diploma of Mechatronic Engineering Technology\n• Diploma in Engineering Technology\n   (Sustainable Energy and Power Distribution)\n• Diploma of Electrics Engineering Technology\n   (Computer)\n• Diploma of Engineering Technology\n   (Intrumentation and Control)\n• Diploma in Autotronics Engineering Technology"));
-        diplomaChildren.add(childItem("Mechanical Engineering", "• Diploma in Precision Tooling Engineering\n   Technology\n• Diploma in Engineering Technology \n   (Industrial Design)\n• Diploma in Industrial Quality Engineering\n   Technology\n• Diploma in Innovative Product Design\n   Engineering Technology\n• Diploma of Mechanical Engineering Technology\n   (CNC Precision)\n• Diploma in Engineering Technology\n  (Machine Tools Maintenance)\n• Diploma of Mechanical Engineering Technology\n   (Manufacturing)"));
-        diplomaChildren.add(childItem("Computer & Information", "• Diploma in Software Engineering\n• Diploma in Cyber Security Technology\n• Diploma in Creative Multimedia"));
+        diplomaChildren.add(childItem("Electrical Engineering",  "Focuses on electrical principles, circuits, and power systems with strong hands-on training for industry needs."));
+        diplomaChildren.add(childItem("Mechanical Engineering", "Provides practical and theoretical training in mechanics, design, and manufacturing using modern engineering tools."));
+        diplomaChildren.add(childItem("Computer & Information", "Covers computing fundamentals, software skills, networking, and IT concepts to prepare students for digital-tech careers."));
         childData.add(diplomaChildren);
 
         // branchPrograms for branches with sub-programmes

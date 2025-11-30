@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Theme moved to themes.xml to avoid duplicate resource error -->
+    <style name="AppSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:popupBackground">@android:color/white</item>
+        <item name="android:spinnerMode">dropdown</item>
+    </style>
 </resources>
