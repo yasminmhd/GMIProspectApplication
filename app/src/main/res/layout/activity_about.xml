@@ -43,7 +43,7 @@
                 android:id="@+id/tv_about_paragraph"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="  In 1991, German-Malaysian Institute (GMI), a hub for advanced skills training was established. GMI provides a comprehensive and well-balanced training of practical and theoretical. The institute offers a broad-based engineering education, with opportunities for specialization and self-directed learning and development.\n\n  GMI offers diverse training programmes and services comprising full time diploma programmes, a pre-university programme (A-Level), skills upgrading technical courses, train-the-trainers programmes, and industrial consultancy and services.\n\n  The birth of GMI was the outcome of a joint venture between the Governments of Malaysia and Germany. GMI is governed by a 10-member Board of Directors comprising representatives from both governments, plus public and industrial representatives. GMI had its first student enrollment in 1992 and the growing number of enrollment is prevalent.\n\n"
+                android:text="@string/about_text"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:lineSpacingExtra="4dp" />

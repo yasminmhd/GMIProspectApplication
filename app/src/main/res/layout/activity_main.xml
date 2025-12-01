@@ -18,7 +18,6 @@
         android:textSize="22sp"
         android:textStyle="bold" />
 
-    <!-- Scrollable list of course cards -->
     <ScrollView
         android:id="@+id/scroll_courses"
         android:layout_width="match_parent"

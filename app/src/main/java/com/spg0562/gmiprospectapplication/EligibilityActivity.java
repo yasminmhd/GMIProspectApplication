@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.LinearLayout;
@@ -16,17 +15,37 @@ import android.widget.AdapterView;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+
 public class EligibilityActivity extends AppCompatActivity {
     private static final String APPLY_URL = "https://gmi.vialing.com/oa/login";
 
-    private static final String[] GRADES = new String[] {
-            "Select", "A+", "A", "A-", "B+", "B", "C+", "C", "D", "E", "G"
+    private static final String[] GRADES_SPM = new String[] {
+            "Select", "N/A", "A+", "A", "A-", "B+", "B", "C+", "C", "D", "E", "G"
     };
 
     private static final String[] EXTRA_SUBJECTS = new String[] {
             "Select subject", "Biology", "Additional Science", "Computer Studies", "Economics",
             "Further Mathematics", "Geography", "Arabic", "Chinese", "Tamil", "Accountancy", "Design & Technology"
     };
+
+    private static final Map<String, Integer> SPM_RANK;
+    static {
+        SPM_RANK = new HashMap<>();
+        SPM_RANK.put("G", 0);
+        SPM_RANK.put("E", 1);
+        SPM_RANK.put("D", 2);
+        SPM_RANK.put("C", 3);
+        SPM_RANK.put("C+", 4);
+        SPM_RANK.put("B", 5);
+        SPM_RANK.put("B+", 6);
+        SPM_RANK.put("A-", 7);
+        SPM_RANK.put("A", 8);
+        SPM_RANK.put("A+", 9);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +54,6 @@ public class EligibilityActivity extends AppCompatActivity {
 
         Spinner spCert = findViewById(R.id.sp_cert_type);
         LinearLayout llSpm = findViewById(R.id.ll_spm);
-        LinearLayout llIgcse = findViewById(R.id.ll_igcse);
-        LinearLayout llVkm = findViewById(R.id.ll_vkm);
-
-        EditText etVkm = findViewById(R.id.et_vkm_percent);
 
         Button btnCheck = findViewById(R.id.btn_check);
         Button btnApply = findViewById(R.id.btn_apply);
@@ -47,9 +62,8 @@ public class EligibilityActivity extends AppCompatActivity {
         btnApply.setVisibility(View.GONE);
         btnApply.setEnabled(false);
 
-        // certificate selector
-        String[] items = new String[]{ "SPM", "IGCSE", "VKM" };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items) {
+        String[] items = new String[]{ "SPM" };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, items) {
             @Override
             public View getView(int position, View convertView, android.view.ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
@@ -66,11 +80,6 @@ public class EligibilityActivity extends AppCompatActivity {
                 TextView tv = v.findViewById(android.R.id.text1);
                 if (tv != null) {
                     tv.setTextColor(ContextCompat.getColor(EligibilityActivity.this, android.R.color.black));
-                    tv.setBackgroundColor(ContextCompat.getColor(EligibilityActivity.this, android.R.color.white));
-                    int pad = (int)(12 * getResources().getDisplayMetrics().density + 0.5f);
-                    tv.setPadding(pad, pad, pad, pad);
-                } else {
-                    v.setBackgroundColor(ContextCompat.getColor(EligibilityActivity.this, android.R.color.white));
                 }
                 return v;
             }
@@ -94,39 +103,21 @@ public class EligibilityActivity extends AppCompatActivity {
         Spinner spSpmExtraSub3 = findViewById(R.id.sp_spm_extra_sub_3);
         Spinner spSpmExtraGrade3 = findViewById(R.id.sp_spm_extra_grade_3);
 
-        // IGCSE spinners
-        Spinner spIgcEng = findViewById(R.id.sp_igcse_eng);
-        Spinner spIgcMath = findViewById(R.id.sp_igcse_math);
-        Spinner spIgcScience = findViewById(R.id.sp_igcse_science);
-        Spinner spIgcExtraSub1 = findViewById(R.id.sp_igcse_extra_sub_1);
-        Spinner spIgcExtraGrade1 = findViewById(R.id.sp_igcse_extra_grade_1);
-        Spinner spIgcExtraSub2 = findViewById(R.id.sp_igcse_extra_sub_2);
-        Spinner spIgcExtraGrade2 = findViewById(R.id.sp_igcse_extra_grade_2);
-        Spinner spIgcExtraSub3 = findViewById(R.id.sp_igcse_extra_sub_3);
-        Spinner spIgcExtraGrade3 = findViewById(R.id.sp_igcse_extra_grade_3);
-
-        // grade adapter
-        ArrayAdapter<String> gradeAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, GRADES);
-        gradeAdapter.setDropDownViewResource(R.layout.spinner_item);
-
-        // extra subject adapter
+        ArrayAdapter<String> gradeAdapterSpm = new ArrayAdapter<>(this, R.layout.spinner_item, GRADES_SPM);
+        gradeAdapterSpm.setDropDownViewResource(R.layout.spinner_item);
         ArrayAdapter<String> subjAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, EXTRA_SUBJECTS);
         subjAdapter.setDropDownViewResource(R.layout.spinner_item);
 
-        // attach adapters
-        Spinner[] gradeSpinners = new Spinner[] {
+        Spinner[] spmGradeSpinners = new Spinner[] {
                 spSpmBm, spSpmSej, spSpmEng, spSpmMath, spSpmAddMath, spSpmPhy, spSpmChem,
-                spSpmExtraGrade1, spSpmExtraGrade2, spSpmExtraGrade3,
-                spIgcEng, spIgcMath, spIgcScience,
-                spIgcExtraGrade1, spIgcExtraGrade2, spIgcExtraGrade3
+                spSpmExtraGrade1, spSpmExtraGrade2, spSpmExtraGrade3
         };
-        for (Spinner sp : gradeSpinners) {
-            if (sp != null) sp.setAdapter(gradeAdapter);
+        for (Spinner sp : spmGradeSpinners) {
+            if (sp != null) sp.setAdapter(gradeAdapterSpm);
         }
 
         Spinner[] subjSpinners = new Spinner[] {
-                spSpmExtraSub1, spSpmExtraSub2, spSpmExtraSub3,
-                spIgcExtraSub1, spIgcExtraSub2, spIgcExtraSub3
+                spSpmExtraSub1, spSpmExtraSub2, spSpmExtraSub3
         };
         for (Spinner sp : subjSpinners) {
             if (sp != null) sp.setAdapter(subjAdapter);
@@ -135,9 +126,7 @@ public class EligibilityActivity extends AppCompatActivity {
         spCert.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                llSpm.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
-                llIgcse.setVisibility(position == 1 ? View.VISIBLE : View.GONE);
-                llVkm.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
+                llSpm.setVisibility(View.VISIBLE);
                 tvResult.setText("");
                 btnApply.setVisibility(View.GONE);
                 btnApply.setEnabled(false);
@@ -147,87 +136,105 @@ public class EligibilityActivity extends AppCompatActivity {
         });
 
         btnCheck.setOnClickListener(v -> {
-            int sel = spCert.getSelectedItemPosition();
             boolean eligible = false;
             String reason = "";
 
             try {
-                if (sel == 0) { // SPM - use grade spinners
-                    Spinner[] core = new Spinner[] { spSpmBm, spSpmSej, spSpmEng, spSpmMath, spSpmAddMath, spSpmPhy, spSpmChem };
-                    int sum = 0;
-                    int count = 0;
-                    for (Spinner s : core) {
-                        if (s == null) continue;
-                        String g = (String)s.getSelectedItem();
-                        if (g == null || g.equals("Select")) {
-                            tvResult.setText("Please select grades for all compulsory SPM subjects.");
-                            return;
-                        }
-                        sum += gradeToPoints(g);
-                        count++;
+                Spinner[] requiredForBasic = new Spinner[] { spSpmBm, spSpmEng, spSpmMath, spSpmAddMath, spSpmPhy, spSpmChem };
+                for (Spinner s : requiredForBasic) {
+                    if (s == null) continue;
+                    String g = getSelected(s);
+                    if (g == null || g.equals("Select")) {
+                        tvResult.setText("Please select grades for all required SPM subjects (use N/A if not taken).");
+                        return;
                     }
-                    // include extras if selected
-                    Spinner[] extraSub = new Spinner[] { spSpmExtraSub1, spSpmExtraSub2, spSpmExtraSub3 };
-                    Spinner[] extraGrade = new Spinner[] { spSpmExtraGrade1, spSpmExtraGrade2, spSpmExtraGrade3 };
-                    for (int i = 0; i < extraSub.length; i++) {
-                        if (extraSub[i] == null || extraGrade[i] == null) continue;
-                        String sub = (String)extraSub[i].getSelectedItem();
-                        String g = (String)extraGrade[i].getSelectedItem();
-                        if (sub != null && !sub.equals("Select subject") && g != null && !g.equals("Select")) {
-                            sum += gradeToPoints(g);
-                            count++;
-                        }
-                    }
-                    if (count == 0) { tvResult.setText("No SPM grades entered."); return; }
-                    float avg = (float) sum / (float) count;
-                    eligible = avg >= 3.0f; // C average or better
-                    reason = eligible ? "Eligible via SPM (average grade C or better)." : "Not eligible: SPM average below required threshold.";
-                } else if (sel == 1) { // IGCSE - count A grades
-                    int aCount = 0;
-                    Spinner[] core = new Spinner[] { spIgcEng, spIgcMath, spIgcScience };
-                    for (Spinner s : core) {
-                        if (s == null) continue;
-                        String g = (String)s.getSelectedItem();
-                        if (g == null || g.equals("Select")) {
-                            tvResult.setText("Please select grades for key IGCSE subjects.");
-                            return;
-                        }
-                        if (g.equals("A")) aCount++;
-                    }
-                    // extras
-                    Spinner[] extraSub = new Spinner[] { spIgcExtraSub1, spIgcExtraSub2, spIgcExtraSub3 };
-                    Spinner[] extraGrade = new Spinner[] { spIgcExtraGrade1, spIgcExtraGrade2, spIgcExtraGrade3 };
-                    for (int i = 0; i < extraSub.length; i++) {
-                        if (extraSub[i] == null || extraGrade[i] == null) continue;
-                        String sub = (String)extraSub[i].getSelectedItem();
-                        String g = (String)extraGrade[i].getSelectedItem();
-                        if (sub != null && !sub.equals("Select subject") && g != null && !g.equals("Select")) {
-                            if (g.equals("A")) aCount++;
-                        }
-                    }
-                    eligible = aCount >= 5;
-                    reason = eligible ? "Eligible via IGCSE." : "Not eligible: insufficient number of A grades (need 5).";
-                } else { // VKM
-                    String s = etVkm.getText().toString().trim();
-                    if (s.isEmpty()) { tvResult.setText("Enter VKM percentage."); return; }
-                    int pct = Integer.parseInt(s);
-                    if (pct < 0 || pct > 100) { tvResult.setText("VKM must be 0-100."); return; }
-                    eligible = pct >= 60;
-                    reason = eligible ? "Eligible via VKM." : "Not eligible: VKM percentage below required threshold.";
                 }
-            } catch (NumberFormatException ex) {
-                tvResult.setText("Enter valid numeric values.");
-                return;
+
+                String gEng = getSelected(spSpmEng);
+                String gMath = getSelected(spSpmMath);
+                String gAdd = getSelected(spSpmAddMath);
+                String gPhy = getSelected(spSpmPhy);
+                String gChem = getSelected(spSpmChem);
+                String gBm = getSelected(spSpmBm);
+                String gSej = getSelected(spSpmSej);
+
+                // collect all subject-grade pairs (core + selected extras)
+                List<SubjectGrade> all = new ArrayList<>();
+                all.add(new SubjectGrade("Bahasa Melayu", gBm));
+                all.add(new SubjectGrade("Sejarah", gSej));
+                all.add(new SubjectGrade("English", gEng));
+                all.add(new SubjectGrade("Mathematics", gMath));
+                all.add(new SubjectGrade("Additional Mathematics", gAdd));
+                all.add(new SubjectGrade("Physics", gPhy));
+                all.add(new SubjectGrade("Chemistry", gChem));
+
+                addIfSelectedExtra(all, spSpmExtraSub1, spSpmExtraGrade1);
+                addIfSelectedExtra(all, spSpmExtraSub2, spSpmExtraGrade2);
+                addIfSelectedExtra(all, spSpmExtraSub3, spSpmExtraGrade3);
+
+                // GAPP Sponsored: "A" for English, Mathematics, Additional Mathematics, Physics, Chemistry and 2 other subjects (>= A)
+                boolean coreA = atLeastSPM(gEng, "A") && atLeastSPM(gMath, "A") && atLeastSPM(gAdd, "A") && atLeastSPM(gPhy, "A") && atLeastSPM(gChem, "A");
+                int otherAcount = 0;
+                for (SubjectGrade sg : all) {
+                    if (isCoreGappSubject(sg.name)) continue;
+                    if (atLeastSPM(sg.grade, "A")) otherAcount++;
+                }
+                boolean meetsGappSponsored = coreA && otherAcount >= 2;
+
+                // Private Candidate GAPP SPM: "C" for English, Mathematics, Additional Mathematics, Physics, Chemistry and 2 other subjects (>= C)
+                boolean coreC = atLeastSPM(gEng, "C") && atLeastSPM(gMath, "C") && atLeastSPM(gAdd, "C") && atLeastSPM(gPhy, "C") && atLeastSPM(gChem, "C");
+                int otherCcount = 0;
+                for (SubjectGrade sg : all) {
+                    if (isCoreGappSubject(sg.name)) continue;
+                    if (atLeastSPM(sg.grade, "C")) otherCcount++;
+                }
+                boolean meetsPrivateGapp = coreC && otherCcount >= 2;
+
+                // GUFP: at least C in BM, English, Math, AddMath, Physics, Chemistry
+                boolean meetsGufp = atLeastSPM(gBm, "C") && atLeastSPM(gEng, "C") && atLeastSPM(gMath, "C")
+                        && atLeastSPM(gAdd, "C") && atLeastSPM(gPhy, "C") && atLeastSPM(gChem, "C");
+
+                // Diploma: at least 3 credits
+                int creditsCount = 0;
+                for (SubjectGrade sg : all) {
+                    if (sg.grade != null && atLeastSPM(sg.grade, "C")) {
+                        creditsCount++;
+                    }
+                }
+                boolean meetsDiploma = creditsCount >= 3;
+
+                // collect all matched programmes
+                List<String> matches = new ArrayList<>();
+                if (meetsGappSponsored) matches.add("GAPP Sponsored Candidate");
+                if (meetsPrivateGapp) matches.add("GAPP Private Candidate");
+                if (meetsGufp) matches.add("GUFP Programme");
+                if (meetsDiploma) matches.add("Diploma Programme");
+
+                if (!matches.isEmpty()) {
+                    eligible = true;
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < matches.size(); i++) {
+                        if (i > 0) sb.append(", ");
+                        sb.append(matches.get(i));
+                    }
+                    reason = "Eligible: \n" + sb.toString() + ".";
+                } else {
+                    eligible = false;
+                    reason = "Not eligible for listed programmes. Requirements not met.";
+                }
+
+            } catch (Exception ex) {
+                eligible = false;
+                reason = "Error evaluating eligibility.";
             }
 
             tvResult.setText(reason);
             if (eligible) {
-                btnApply.setEnabled(true);
                 btnApply.setVisibility(View.VISIBLE);
+                btnApply.setEnabled(true);
             } else {
-                btnApply.setEnabled(false);
                 btnApply.setVisibility(View.GONE);
-                Toast.makeText(EligibilityActivity.this, "You may still contact admissions for details.", Toast.LENGTH_SHORT).show();
+                btnApply.setEnabled(false);
             }
         });
 
@@ -253,20 +260,41 @@ public class EligibilityActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private static int gradeToPoints(String g) {
-        if (g == null) return 0;
-        switch (g) {
-            case "A+": return 5;
-            case "A": return 5;
-            case "A-": return 4;
-            case "B+": return 4;
-            case "B": return 3;
-            case "C+": return 3;
-            case "C": return 2;
-            case "D": return 1;
-            case "E": return 0;
-            case "G": return 0;
-            default: return 0; // Select or unknown
+    // helper: get selected string from spinner
+    private String getSelected(Spinner s) {
+        if (s == null || s.getSelectedItem() == null) return null;
+        return s.getSelectedItem().toString();
+    }
+
+    // compare SPM grade to minimum (based on SPM_RANK)
+    private boolean atLeastSPM(String grade, String minGrade) {
+        if (grade == null || minGrade == null) return false;
+        Integer gVal = SPM_RANK.get(grade);
+        Integer minVal = SPM_RANK.get(minGrade);
+        if (gVal == null || minVal == null) return false;
+        return gVal >= minVal;
+    }
+
+    // utility to identify the five GAPP core subjects
+    private boolean isCoreGappSubject(String name) {
+        return "English".equals(name) || "Mathematics".equals(name) || "Additional Mathematics".equals(name)
+                || "Physics".equals(name) || "Chemistry".equals(name);
+    }
+
+    // helper to add extra subject-grade pair if selected
+    private void addIfSelectedExtra(List<SubjectGrade> list, Spinner subj, Spinner grade) {
+        if (subj == null || grade == null) return;
+        String s = getSelected(subj);
+        String g = getSelected(grade);
+        if (s != null && !s.equals("Select subject") && g != null && !g.equals("Select")) {
+            list.add(new SubjectGrade(s, g));
         }
+    }
+
+    // small holder class
+    private static class SubjectGrade {
+        String name;
+        String grade;
+        SubjectGrade(String n, String g) { name = n; grade = g; }
     }
 }

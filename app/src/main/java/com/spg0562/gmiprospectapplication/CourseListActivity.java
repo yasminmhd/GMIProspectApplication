@@ -38,11 +38,9 @@ public class CourseListActivity extends AppCompatActivity {
         String branchOnly = intent.getStringExtra("branch");
 
         if (branchOnly != null) {
-            // show programmes for a single branch
             tvCategory.setText(branchOnly);
             btnBack.setOnClickListener(v -> finish());
 
-            // show banner for the branch if available
             int resId = 0;
             if ("Electrical Engineering".equalsIgnoreCase(branchOnly)) {
                 resId = getResources().getIdentifier("banner_eed", "drawable", getPackageName());
@@ -82,7 +80,6 @@ public class CourseListActivity extends AppCompatActivity {
             return;
         }
 
-        // normal category view (shows only the selected category if passed from MainActivity)
         if (category == null) category = "Courses";
         tvCategory.setText(category);
         btnBack.setOnClickListener(v -> finish());
@@ -103,7 +100,6 @@ public class CourseListActivity extends AppCompatActivity {
             ivBanner.setVisibility(View.GONE);
         }
 
-        // find the group that matches category (or show all groups if no match)
         List<Map<String, String>> useGroup = new ArrayList<>();
         List<List<Map<String, String>>> useChild = new ArrayList<>();
         boolean found = false;
@@ -165,8 +161,8 @@ public class CourseListActivity extends AppCompatActivity {
         gpreu.put("TITLE", "Pre-U");
         groupData.add(gpreu);
         List<Map<String, String>> preuChildren = new ArrayList<>();
-        preuChildren.add(childItem("German University Preparatory Programme (GAPP)", "Pathway for German university entrance and preparatory modules"));
-        preuChildren.add(childItem("GMI-UTP Foundation Programme (GUFP)", "Foundation programme to prepare for undergraduate studies"));
+        preuChildren.add(childItem("German University Preparatory Programme (GAPP)", getString(R.string.gapp_desc)));
+        preuChildren.add(childItem("GMI-UTP Foundation Programme (GUFP)", getString(R.string.gufp_desc)));
         childData.add(preuChildren);
 
         // Degree group
@@ -174,7 +170,7 @@ public class CourseListActivity extends AppCompatActivity {
         gdegree.put("TITLE", "Degree");
         groupData.add(gdegree);
         List<Map<String, String>> degreeChildren = new ArrayList<>();
-        degreeChildren.add(childItem("Bachelor of Electrical Engineering Technology (BELT)", "Degree Programme in Collaboration with Universiti Teknikal Malaysia Melaka (UTeM)"));
+        degreeChildren.add(childItem("Bachelor of Electrical Engineering Technology (BELT)", getString(R.string.degree_desc)));
         childData.add(degreeChildren);
 
         // Diploma group
@@ -182,9 +178,9 @@ public class CourseListActivity extends AppCompatActivity {
         gdiploma.put("TITLE", "Diploma");
         groupData.add(gdiploma);
         List<Map<String, String>> diplomaChildren = new ArrayList<>();
-        diplomaChildren.add(childItem("Electrical Engineering",  "Focuses on electrical principles, circuits, and power systems with strong hands-on training for industry needs."));
-        diplomaChildren.add(childItem("Mechanical Engineering", "Provides practical and theoretical training in mechanics, design, and manufacturing using modern engineering tools."));
-        diplomaChildren.add(childItem("Computer & Information", "Covers computing fundamentals, software skills, networking, and IT concepts to prepare students for digital-tech careers."));
+        diplomaChildren.add(childItem("Electrical Engineering",  getString(R.string.eed_desc)));
+        diplomaChildren.add(childItem("Mechanical Engineering", getString(R.string.mecha_desc)));
+        diplomaChildren.add(childItem("Computer & Information", getString(R.string.cid_desc)));
         childData.add(diplomaChildren);
 
         // branchPrograms for branches with sub-programmes
@@ -192,7 +188,7 @@ public class CourseListActivity extends AppCompatActivity {
                 "Diploma of Mechatronic Engineering Technology",
                 "Diploma in Engineering Technology (Sustainable Energy and Power Distribution)",
                 "Diploma of Electrics Engineering Technology (Computer)",
-                "Diploma of Engineering Technology (Intrumentation and Control)",
+                "Diploma of Engineering Technology (Instrumentation and Control)",
                 "Diploma in Autotronics Engineering Technology"
         });
         branchPrograms.put("Mechanical Engineering", new String[]{
